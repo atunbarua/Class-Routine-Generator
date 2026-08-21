@@ -4,116 +4,263 @@
     padding: 0;
 }
 
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    color: #1f2937;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f1f5f4;
+
+    color: #17201d;
+
+    line-height: 1.5;
+
 }
+
 
 .app {
-    max-width: 850px;
+
+    width: min(900px, 100%);
+
     margin: auto;
+
     padding: 20px;
+
 }
 
 
-/* HEADER */
+/* =====================================
+   UNIVERSITY HEADER
+===================================== */
 
-.header {
-    text-align: center;
-    margin-bottom: 25px;
-}
+.university-header {
 
-.header h1 {
-    font-size: 28px;
-    margin-bottom: 6px;
-}
-
-.header p {
-    color: #6b7280;
-}
-
-
-/* DATE */
-
-.date-section {
     background: white;
-    border-radius: 12px;
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+    border-bottom: 4px solid #1f5c45;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.06);
+
+    margin-bottom: 20px;
+
+}
+
+
+.university-logo {
+
+    width: 85px;
+
+    height: 85px;
+
+    object-fit: contain;
+
+}
+
+
+.university-info {
+
+    flex: 1;
+
+}
+
+
+.university-info h1 {
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    margin-bottom: 4px;
+
+}
+
+
+.university-info h2 {
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #1f5c45;
+
+    margin-bottom: 8px;
+
+}
+
+
+.university-info p {
+
+    font-size: 14px;
+
+    color: #6b7280;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================
+   DATE CARD
+===================================== */
+
+.date-card {
+
+    background: #1f5c45;
+
+    color: white;
+
+    border-radius: 14px;
+
     padding: 18px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
-    margin-bottom: 25px;
+    margin-bottom: 28px;
+
 }
 
-.date-section button {
-    border: none;
-    background: #eef2f7;
+
+.date-button {
 
     width: 42px;
+
     height: 42px;
 
-    border-radius: 8px;
+    border: none;
 
-    font-size: 25px;
+    border-radius: 9px;
+
+    background: rgba(255,255,255,0.15);
+
+    color: white;
+
+    font-size: 28px;
 
     cursor: pointer;
+
 }
 
-.date-section button:hover {
-    background: #e2e8f0;
+
+.date-button:hover {
+
+    background: rgba(255,255,255,0.25);
+
 }
 
-.date-section div {
+
+.date-info {
+
     text-align: center;
+
 }
 
-.label {
-    font-size: 12px;
-    color: #6b7280;
+
+.date-info span {
 
     display: block;
 
-    margin-bottom: 4px;
+    font-size: 12px;
+
+    opacity: 0.8;
+
+    margin-bottom: 3px;
+
 }
 
-.date-section h2 {
+
+.date-info h2 {
+
     font-size: 20px;
+
 }
 
 
-/* SECTION TITLE */
+.date-info small {
 
-.section-title {
+    display: block;
+
+    margin-top: 3px;
+
+    opacity: 0.8;
+
+}
+
+
+/* =====================================
+   SECTION HEADING
+===================================== */
+
+.section-heading {
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
-    margin-bottom: 12px;
+    margin-bottom: 13px;
+
 }
 
-.section-title h2 {
-    font-size: 20px;
+
+.section-heading h2 {
+
+    font-size: 21px;
+
 }
 
-#resetSchedule {
+
+.section-heading p {
+
+    font-size: 13px;
+
+    color: #6b7280;
+
+}
+
+
+.reset-button {
+
     border: none;
+
     background: transparent;
 
-    color: #dc2626;
+    color: #b91c1c;
+
+    font-weight: 600;
 
     cursor: pointer;
+
 }
 
 
-/* SCHEDULE SLOT */
+/* =====================================
+   SCHEDULE SLOT
+===================================== */
 
 .schedule-slot {
+
     background: white;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
     padding: 15px;
 
@@ -121,193 +268,352 @@ body {
 
     border: 2px solid transparent;
 
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.04);
+
     transition: 0.15s;
+
 }
+
+
+.schedule-slot.scheduled {
+
+    border-left: 5px solid #5d9b55;
+
+    background: #fbfefb;
+
+}
+
 
 .schedule-slot.selected {
-    border-color: #111827;
+
+    border: 2px solid #1f5c45;
+
+    background: #f5faf7;
+
 }
 
+
+.schedule-slot.merged {
+
+    border-left: 5px solid #1f5c45;
+
+}
+
+
 .slot-top {
+
     display: flex;
 
     justify-content: space-between;
+
     align-items: center;
 
+    gap: 10px;
+
     margin-bottom: 12px;
+
 }
+
 
 .time {
-    font-weight: bold;
+
+    font-weight: 700;
+
+    font-size: 15px;
+
 }
 
+
+.scheduled-label {
+
+    font-size: 11px;
+
+    color: #4f7f4a;
+
+    font-weight: 600;
+
+    margin-left: 8px;
+
+}
+
+
 .select-slot {
+
     display: flex;
 
     align-items: center;
 
-    gap: 6px;
-
-    font-size: 13px;
+    gap: 5px;
 
     color: #6b7280;
+
+    font-size: 12px;
+
 }
+
+
+.select-slot input {
+
+    accent-color: #1f5c45;
+
+}
+
+
+/* =====================================
+   SELECTS
+===================================== */
 
 .course-select,
 .teacher-select,
 #classroom {
+
     width: 100%;
 
-    padding: 10px;
+    padding: 10px 11px;
 
     border: 1px solid #d1d5db;
 
-    border-radius: 7px;
+    border-radius: 8px;
 
     background: white;
 
     font-family: inherit;
 
     font-size: 14px;
+
+    color: #17201d;
+
 }
+
+
+.course-select {
+
+    font-weight: 600;
+
+}
+
 
 .teacher-select {
+
     margin-top: 8px;
+
 }
 
 
-/* MERGE */
+/* =====================================
+   MERGE PANEL
+===================================== */
 
-.merge-controls {
+.merge-panel {
+
+    background: #e9f2ed;
+
+    border: 1px solid #c8ddd1;
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    margin: 16px 0;
+
+}
+
+
+.merge-panel strong {
+
+    font-size: 14px;
+
+}
+
+
+.merge-panel p {
+
+    font-size: 12px;
+
+    color: #66736c;
+
+    margin-top: 2px;
+
+}
+
+
+.merge-buttons {
+
     display: flex;
 
     gap: 10px;
 
-    margin-top: 15px;
+    margin-top: 12px;
 
-    margin-bottom: 20px;
 }
 
-.merge-controls button {
+
+.merge-buttons button {
+
     flex: 1;
-
-    padding: 11px;
-
-    border: none;
-
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    font-weight: bold;
-}
-
-#mergeButton {
-    background: #111827;
-    color: white;
-}
-
-#mergeButton:hover {
-    background: #374151;
-}
-
-#unmergeButton {
-    background: #e5e7eb;
-    color: #111827;
-}
-
-#unmergeButton:hover {
-    background: #d1d5db;
-}
-
-
-/* SETTINGS */
-
-.settings-section {
-    background: white;
-
-    padding: 15px;
-
-    border-radius: 10px;
-
-    margin-top: 15px;
-}
-
-.settings-section label {
-    display: block;
-
-    font-weight: bold;
-
-    margin-bottom: 8px;
-}
-
-.settings-section label span {
-    font-weight: normal;
-
-    color: #6b7280;
-
-    font-size: 13px;
-}
-
-textarea {
-    width: 100%;
 
     padding: 10px;
 
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.primary-button {
+
+    background: #1f5c45;
+
+    color: white;
+
+    border: none;
+
+}
+
+
+.primary-button:hover {
+
+    background: #174633;
+
+}
+
+
+.secondary-button {
+
+    background: white;
+
+    color: #1f5c45;
+
+    border: 1px solid #b9cec2;
+
+}
+
+
+/* =====================================
+   SETTINGS
+===================================== */
+
+.settings-card {
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 16px;
+
+    margin-top: 12px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.04);
+
+}
+
+
+.settings-card label {
+
+    display: block;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+
+}
+
+
+.settings-card label span {
+
+    font-size: 12px;
+
+    color: #6b7280;
+
+    font-weight: normal;
+
+    margin-left: 4px;
+
+}
+
+
+textarea {
+
+    width: 100%;
+
+    padding: 11px;
+
     border: 1px solid #d1d5db;
 
-    border-radius: 7px;
+    border-radius: 8px;
+
+    resize: vertical;
 
     font-family: inherit;
 
     font-size: 14px;
 
-    resize: vertical;
 }
 
 
-/* GENERATE */
+/* =====================================
+   GENERATE
+===================================== */
 
 .generate-button {
+
     width: 100%;
 
-    margin-top: 20px;
+    margin-top: 18px;
 
-    padding: 14px;
+    padding: 15px;
 
     border: none;
 
-    border-radius: 9px;
+    border-radius: 10px;
 
-    background: #111827;
+    background: #17201d;
 
     color: white;
 
     font-size: 16px;
 
-    font-weight: bold;
+    font-weight: 700;
 
     cursor: pointer;
+
 }
+
 
 .generate-button:hover {
-    background: #374151;
+
+    background: #2d3934;
+
 }
 
 
-/* OUTPUT */
+/* =====================================
+   OUTPUT
+===================================== */
 
-.output-section {
+.output-card {
+
     background: white;
 
-    margin-top: 25px;
+    border-radius: 12px;
 
-    padding: 15px;
+    padding: 16px;
 
-    border-radius: 10px;
+    margin-top: 22px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.04);
+
 }
 
-.output-header {
+
+.output-heading {
+
     display: flex;
 
     align-items: center;
@@ -315,45 +621,129 @@ textarea {
     justify-content: space-between;
 
     margin-bottom: 12px;
+
 }
 
-.output-header button {
+
+.output-heading h2 {
+
+    font-size: 18px;
+
+}
+
+
+.copy-button {
+
     border: none;
 
-    background: #eef2f7;
+    background: #e9f2ed;
 
-    padding: 8px 15px;
+    color: #1f5c45;
+
+    padding: 8px 16px;
 
     border-radius: 7px;
 
+    font-weight: 600;
+
     cursor: pointer;
+
 }
 
+
 #output {
+
     white-space: pre-wrap;
 
     font-family: Arial, sans-serif;
 
     font-size: 14px;
 
-    line-height: 1.6;
+    line-height: 1.65;
+
 }
 
 
-/* MOBILE */
+/* =====================================
+   FOOTER
+===================================== */
+
+footer {
+
+    text-align: center;
+
+    color: #8a938e;
+
+    font-size: 11px;
+
+    margin: 25px 0 10px;
+
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
 
 @media (max-width: 600px) {
 
     .app {
-        padding: 12px;
+
+        padding: 10px;
+
     }
 
-    .header h1 {
-        font-size: 23px;
+
+    .university-header {
+
+        padding: 18px;
+
+        gap: 14px;
+
     }
 
-    .merge-controls {
+
+    .university-logo {
+
+        width: 62px;
+
+        height: 62px;
+
+    }
+
+
+    .university-info h1 {
+
+        font-size: 16px;
+
+    }
+
+
+    .university-info h2 {
+
+        font-size: 12px;
+
+    }
+
+
+    .university-info p {
+
+        font-size: 12px;
+
+    }
+
+
+    .date-info h2 {
+
+        font-size: 16px;
+
+    }
+
+
+    .merge-buttons {
+
         flex-direction: column;
+
     }
 
 }
