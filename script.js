@@ -1,50 +1,69 @@
-// ========================================
-// CLASS ROUTINE GENERATOR
-// ========================================
+// ============================================
+// NSTU CLASS ROUTINE GENERATOR - V2
+// ============================================
 
 
-// ========================================
-// TIME SLOTS
-// ========================================
+// ============================================
+// OFFICIAL TIME STRUCTURE
+// ============================================
 
 const timeSlots = [
 
     {
         start: "9:00",
-        end: "9:45"
+        end: "9:45",
+        emoji: "🕘"
     },
 
     {
         start: "9:50",
-        end: "10:35"
+        end: "10:35",
+        emoji: "🕘"
     },
 
     {
         start: "10:40",
-        end: "11:25"
+        end: "11:25",
+        emoji: "🕙"
     },
 
     {
         start: "11:30",
-        end: "12:15"
+        end: "12:15",
+        emoji: "🕦"
     },
 
     {
         start: "12:20",
-        end: "1:05"
+        end: "1:05",
+        emoji: "🕧"
+    },
+
+    // BREAK
+    {
+        start: "1:45",
+        end: "2:30",
+        emoji: "🕜"
     },
 
     {
-        start: "1:45",
-        end: "2:30"
+        start: "2:30",
+        end: "3:15",
+        emoji: "🕝"
+    },
+
+    {
+        start: "3:15",
+        end: "4:00",
+        emoji: "🕒"
     }
 
 ];
 
 
-// ========================================
-// COURSES
-// ========================================
+// ============================================
+// COURSE DATABASE
+// ============================================
 
 const courses = [
 
@@ -55,15 +74,33 @@ const courses = [
     },
 
     {
+        code: "ESDM 3202",
+        name: "Environmental ...",
+        teachers: ["MSR", "PC", "MAS"]
+    },
+
+    {
         code: "ESDM 3203",
         name: "Integrated Water Resource Management",
         teachers: ["MSK", "SA"]
     },
 
     {
+        code: "ESDM 3204",
+        name: "Environmental ...",
+        teachers: ["MAS", "MSK", "AT"]
+    },
+
+    {
         code: "ESDM 3205",
         name: "Climate Change",
         teachers: ["JKB", "NS"]
+    },
+
+    {
+        code: "ESDM 3206",
+        name: "Environmental ...",
+        teachers: ["MKT", "MSR", "NS"]
     },
 
     {
@@ -93,9 +130,176 @@ const courses = [
 ];
 
 
-// ========================================
+// ============================================
+// WEEKLY ROUTINE
+// ============================================
+//
+// Day names use JavaScript numbering:
+//
+// 0 = Sunday
+// 1 = Monday
+// 2 = Tuesday
+// 3 = Wednesday
+// 4 = Thursday
+// 5 = Friday
+// 6 = Saturday
+//
+// Only GREEN Y-3 routine is included.
+// ============================================
+
+const weeklyRoutine = {
+
+    // SUNDAY
+    0: [
+
+        {
+            slots: [0, 1],
+            course: "ESDM 3205",
+            teacher: "JKB + NS",
+            classroom: "C-3"
+        },
+
+        {
+            slots: [2],
+            course: "ESDM 3211",
+            teacher: "NS",
+            classroom: "C-3"
+        },
+
+        {
+            slots: [3, 4],
+            course: "ESDM 3203",
+            teacher: "MSK + SA",
+            classroom: "C-3"
+        },
+
+        {
+            slots: [5],
+            course: "ESDM 3201",
+            teacher: "MSR + PC",
+            classroom: "C-3"
+        },
+
+        {
+            slots: [6],
+            course: "ESDM 3202",
+            teacher: "MSR + PC + MAS",
+            classroom: "C-3"
+        }
+
+    ],
+
+
+    // MONDAY
+    1: [
+
+        {
+            slots: [0],
+            course: "ESDM 3201",
+            teacher: "MSR + PC",
+            classroom: "C-3"
+        },
+
+        {
+            slots: [1],
+            course: "ESDM 3203",
+            teacher: "MSK + SA",
+            classroom: "C-3"
+        },
+
+        {
+            slots: [2, 3],
+            course: "ESDM 3207",
+            teacher: "MAS + PS",
+            classroom: "C-3"
+        },
+
+        {
+            slots: [4],
+            course: "ESDM 3205",
+            teacher: "JKB + NS",
+            classroom: "C-3"
+        },
+
+        {
+            slots: [5],
+            course: "ESDM 3213",
+            teacher: "FAB + MSR",
+            classroom: "C-3"
+        },
+
+        {
+            slots: [6],
+            course: "ESDM 3204",
+            teacher: "MAS + MSK + AT",
+            classroom: "C-3"
+        }
+
+    ],
+
+
+    // TUESDAY
+    2: [],
+
+
+    // WEDNESDAY
+    3: [
+
+        {
+            slots: [0],
+            course: "ESDM 3213",
+            teacher: "FAB + MSR",
+            classroom: "C-1"
+        },
+
+        {
+            slots: [1],
+            course: "ESDM 3211",
+            teacher: "NS",
+            classroom: "C-1"
+        },
+
+        {
+            slots: [2],
+            course: "ESDM 3207",
+            teacher: "MAS + PS",
+            classroom: "C-1"
+        },
+
+        {
+            slots: [3, 4],
+            course: "ESDM 3209",
+            teacher: "MKT",
+            classroom: "C-1"
+        },
+
+        {
+            slots: [5, 6],
+            course: "ESDM 3206",
+            teacher: "MKT + MSR + NS",
+            classroom: "C-1"
+        }
+
+    ],
+
+
+    // THURSDAY
+    4: [],
+
+
+    // FRIDAY
+    5: [],
+
+
+    // SATURDAY
+    6: []
+
+};
+
+
+// ============================================
 // STATE
-// ========================================
+// ============================================
 
 let selectedDate = new Date();
 
@@ -107,24 +311,14 @@ selectedDate.setDate(
 );
 
 
-// Each slot stores its current state
+// Schedule state
 
-let schedule = timeSlots.map(() => ({
-
-    course: "",
-    teacher: "",
-
-    // If this slot is part of a merged class,
-    // mergedWith stores the ID of the merged group.
-
-    mergedWith: null
-
-}));
+let schedule = [];
 
 
-// ========================================
+// ============================================
 // DATE
-// ========================================
+// ============================================
 
 function formatDate(date) {
 
@@ -132,8 +326,8 @@ function formatDate(date) {
         "en-US",
         {
             weekday: "long",
-            day: "numeric",
             month: "long",
+            day: "numeric",
             year: "numeric"
         }
     );
@@ -147,54 +341,60 @@ function updateDateDisplay() {
         "scheduleDate"
     ).textContent = formatDate(selectedDate);
 
-}
+
+    const day =
+        selectedDate.getDay();
 
 
-// ========================================
-// COURSE OPTIONS
-// ========================================
+    const routine =
+        weeklyRoutine[day];
 
-function getCourseOptions(selectedCourse) {
 
-    let html = `
-        <option value="">
-            — Select Course —
-        </option>
-    `;
+    const status =
+        document.getElementById(
+            "routineStatus"
+        );
 
-    courses.forEach((course, index) => {
 
-        const selected =
-            selectedCourse === index
-                ? "selected"
-                : "";
+    if (routine.length > 0) {
 
-        html += `
-            <option
-                value="${index}"
-                ${selected}
-            >
-                ${course.code} – ${course.name}
-            </option>
-        `;
+        status.textContent =
+            "Regular Routine Loaded";
 
-    });
+    } else {
 
-    return html;
+        status.textContent =
+            "No Regular Class Scheduled";
+
+    }
 
 }
 
 
-// ========================================
+// ============================================
+// FIND COURSE
+// ============================================
+
+function findCourse(code) {
+
+    return courses.find(
+        course =>
+            course.code === code
+    );
+
+}
+
+
+// ============================================
 // TEACHER OPTIONS
-// ========================================
+// ============================================
 
 function getTeacherOptions(
-    courseIndex,
+    courseCode,
     selectedTeacher
 ) {
 
-    if (courseIndex === "") {
+    if (!courseCode) {
 
         return `
             <option value="">
@@ -206,10 +406,21 @@ function getTeacherOptions(
 
 
     const course =
-        courses[courseIndex];
+        findCourse(courseCode);
 
 
-    let html = `
+    if (!course) {
+
+        return `
+            <option value="">
+                — Select Teacher —
+            </option>
+        `;
+
+    }
+
+
+    let options = `
         <option value="">
             — Select Teacher —
         </option>
@@ -219,15 +430,14 @@ function getTeacherOptions(
     course.teachers.forEach(
         teacher => {
 
-            const selected =
-                selectedTeacher === teacher
-                    ? "selected"
-                    : "";
-
-            html += `
+            options += `
                 <option
                     value="${teacher}"
-                    ${selected}
+                    ${
+                        selectedTeacher === teacher
+                            ? "selected"
+                            : ""
+                    }
                 >
                     ${teacher}
                 </option>
@@ -237,23 +447,22 @@ function getTeacherOptions(
     );
 
 
-    // If there are multiple teachers,
-    // allow selecting them together.
+    // Combined teachers
 
     if (course.teachers.length > 1) {
 
         const combined =
             course.teachers.join(" + ");
 
-        const selected =
-            selectedTeacher === combined
-                ? "selected"
-                : "";
 
-        html += `
+        options += `
             <option
                 value="${combined}"
-                ${selected}
+                ${
+                    selectedTeacher === combined
+                        ? "selected"
+                        : ""
+                }
             >
                 ${combined}
             </option>
@@ -262,14 +471,189 @@ function getTeacherOptions(
     }
 
 
-    return html;
+    return options;
 
 }
 
 
-// ========================================
-// RENDER SCHEDULE
-// ========================================
+// ============================================
+// COURSE OPTIONS
+// ============================================
+
+function getCourseOptions(
+    selectedCourse,
+    scheduledCourse
+) {
+
+    let options = `
+        <option value="">
+            — Select Course —
+        </option>
+    `;
+
+
+    courses.forEach(
+        course => {
+
+            const isSelected =
+                selectedCourse === course.code;
+
+
+            const isScheduled =
+                scheduledCourse === course.code;
+
+
+            options += `
+                <option
+                    value="${course.code}"
+                    ${
+                        isSelected
+                            ? "selected"
+                            : ""
+                    }
+                >
+                    ${
+                        isScheduled
+                            ? "★ "
+                            : ""
+                    }${course.code} – ${course.name}${
+                        isScheduled
+                            ? " (Scheduled)"
+                            : ""
+                    }
+                </option>
+            `;
+
+        }
+    );
+
+
+    return options;
+
+}
+
+
+// ============================================
+// CREATE EMPTY SCHEDULE
+// ============================================
+
+function createEmptySchedule() {
+
+    schedule =
+        timeSlots.map(
+            () => ({
+
+                course: "",
+
+                teacher: "",
+
+                classroom: "",
+
+                mergedWith: null,
+
+                scheduled: false
+
+            })
+        );
+
+}
+
+
+// ============================================
+// LOAD ROUTINE
+// ============================================
+
+function loadRoutine() {
+
+    createEmptySchedule();
+
+
+    const day =
+        selectedDate.getDay();
+
+
+    const routine =
+        weeklyRoutine[day];
+
+
+    routine.forEach(
+        classInfo => {
+
+            classInfo.slots.forEach(
+                slotIndex => {
+
+                    schedule[slotIndex] = {
+
+                        course:
+                            classInfo.course,
+
+                        teacher:
+                            classInfo.teacher,
+
+                        classroom:
+                            classInfo.classroom,
+
+                        mergedWith:
+                            null,
+
+                        scheduled:
+                            true
+
+                    };
+
+                }
+            );
+
+
+            // Automatically mark
+            // consecutive official routine
+            // periods as merged.
+
+            if (classInfo.slots.length > 1) {
+
+                const first =
+                    classInfo.slots[0];
+
+
+                classInfo.slots.forEach(
+                    slotIndex => {
+
+                        schedule[
+                            slotIndex
+                        ].mergedWith =
+                            first;
+
+                    }
+                );
+
+            }
+
+        }
+    );
+
+
+    // Set classroom from routine
+
+    const firstClass =
+        routine.find(
+            item =>
+                item.classroom
+        );
+
+
+    document.getElementById(
+        "classroom"
+    ).value =
+        firstClass
+            ? firstClass.classroom
+            : "";
+
+}
+
+
+// ============================================
+// RENDER
+// ============================================
 
 function renderSchedule() {
 
@@ -285,12 +669,18 @@ function renderSchedule() {
     timeSlots.forEach(
         (slot, index) => {
 
-            // Skip slots hidden by merging
+            const current =
+                schedule[index];
+
+
+            // If this slot belongs to a merged
+            // group but isn't the first slot,
+            // don't render it.
 
             if (
-                schedule[index].mergedWith !== null
+                current.mergedWith !== null
                 &&
-                schedule[index].mergedWith !== index
+                current.mergedWith !== index
             ) {
 
                 return;
@@ -298,13 +688,8 @@ function renderSchedule() {
             }
 
 
-            const current =
-                schedule[index];
-
-
-            // Determine merged group
-
-            let groupIndexes = [index];
+            let groupIndexes =
+                [index];
 
 
             if (
@@ -320,7 +705,8 @@ function renderSchedule() {
                                     : null
                         )
                         .filter(
-                            i => i !== null
+                            i =>
+                                i !== null
                         );
 
             }
@@ -329,6 +715,7 @@ function renderSchedule() {
             const firstIndex =
                 groupIndexes[0];
 
+
             const lastIndex =
                 groupIndexes[
                     groupIndexes.length - 1
@@ -336,31 +723,75 @@ function renderSchedule() {
 
 
             const startTime =
-                timeSlots[firstIndex].start;
+                timeSlots[
+                    firstIndex
+                ].start;
+
 
             const endTime =
-                timeSlots[lastIndex].end;
+                timeSlots[
+                    lastIndex
+                ].end;
 
 
             const div =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
 
             div.className =
                 "schedule-slot";
 
 
-            div.dataset.index =
-                index;
+            if (
+                current.scheduled
+            ) {
+
+                div.classList.add(
+                    "scheduled"
+                );
+
+            }
+
+
+            if (
+                current.mergedWith !== null
+            ) {
+
+                div.classList.add(
+                    "merged"
+                );
+
+            }
 
 
             div.innerHTML = `
 
                 <div class="slot-top">
 
-                    <span class="time">
-                        ${startTime} – ${endTime}
-                    </span>
+                    <div>
+
+                        <span class="time">
+
+                            ${startTime}
+                            –
+                            ${endTime}
+
+                        </span>
+
+                        ${
+                            current.scheduled
+                                ? `
+                                    <span class="scheduled-label">
+                                        ★ Scheduled
+                                    </span>
+                                  `
+                                : ""
+                        }
+
+                    </div>
+
 
                     <label class="select-slot">
 
@@ -382,9 +813,14 @@ function renderSchedule() {
                     data-index="${index}"
                 >
 
-                    ${getCourseOptions(
-                        current.course
-                    )}
+                    ${
+                        getCourseOptions(
+                            current.course,
+                            current.scheduled
+                                ? current.course
+                                : ""
+                        )
+                    }
 
                 </select>
 
@@ -394,41 +830,46 @@ function renderSchedule() {
                     data-index="${index}"
                 >
 
-                    ${getTeacherOptions(
-                        current.course,
-                        current.teacher
-                    )}
+                    ${
+                        getTeacherOptions(
+                            current.course,
+                            current.teacher
+                        )
+                    }
 
                 </select>
 
             `;
 
 
-            container.appendChild(div);
+            container.appendChild(
+                div
+            );
 
 
             // COURSE CHANGE
 
             div
-                .querySelector(".course-select")
+                .querySelector(
+                    ".course-select"
+                )
                 .addEventListener(
                     "change",
                     event => {
 
-                        const value =
+                        schedule[index].course =
                             event.target.value;
 
 
-                        schedule[index].course =
-                            value === ""
-                                ? ""
-                                : Number(value);
-
-
-                        // Reset teacher
+                        // When course changes,
+                        // reset teacher.
 
                         schedule[index].teacher =
                             "";
+
+
+                        schedule[index].scheduled =
+                            false;
 
 
                         renderSchedule();
@@ -440,7 +881,9 @@ function renderSchedule() {
             // TEACHER CHANGE
 
             div
-                .querySelector(".teacher-select")
+                .querySelector(
+                    ".teacher-select"
+                )
                 .addEventListener(
                     "change",
                     event => {
@@ -457,41 +900,42 @@ function renderSchedule() {
 }
 
 
-// ========================================
+// ============================================
 // MERGE
-// ========================================
+// ============================================
 
 document
-    .getElementById("mergeButton")
+    .getElementById(
+        "mergeButton"
+    )
     .addEventListener(
         "click",
         () => {
 
-            const checkboxes =
-                document.querySelectorAll(
-                    ".slot-checkbox:checked"
+            const selected =
+                Array.from(
+                    document.querySelectorAll(
+                        ".slot-checkbox:checked"
+                    )
+                )
+                .map(
+                    checkbox =>
+                        Number(
+                            checkbox.dataset.index
+                        )
+                )
+                .sort(
+                    (a, b) =>
+                        a - b
                 );
 
 
-            const selected =
-                Array.from(checkboxes)
-                    .map(
-                        checkbox =>
-                            Number(
-                                checkbox.dataset.index
-                            )
-                    )
-                    .sort(
-                        (a, b) => a - b
-                    );
-
-
-            // Need at least 2 slots
-
-            if (selected.length < 2) {
+            if (
+                selected.length < 2
+            ) {
 
                 alert(
-                    "Select at least two consecutive slots to merge."
+                    "Select at least two consecutive periods."
                 );
 
                 return;
@@ -499,7 +943,7 @@ document
             }
 
 
-            // Check consecutive
+            // Must be consecutive
 
             for (
                 let i = 1;
@@ -514,7 +958,7 @@ document
                 ) {
 
                     alert(
-                        "Only consecutive slots can be merged."
+                        "Only consecutive periods can be merged."
                     );
 
                     return;
@@ -522,90 +966,61 @@ document
                 }
 
             }
+
+
+            // Cannot merge an already merged group
+
+            for (
+                const index
+                of selected
+            ) {
+
+                if (
+                    schedule[index]
+                        .mergedWith !== null
+                ) {
+
+                    alert(
+                        "One of the selected periods is already merged."
+                    );
+
+                    return;
+
+                }
+
+            }
+
+
+            // IMPORTANT:
+            // We DO NOT check course or teacher.
+            //
+            // This allows:
+            //
+            // Select → Merge → Course → Teacher
+            //
+            // exactly as requested.
 
 
             const first =
                 selected[0];
 
 
-            const last =
-                selected[selected.length - 1];
-
-
-            // Check that all selected slots
-            // have the same course
-
-            const firstCourse =
-                schedule[first].course;
-
-
-            if (!firstCourse) {
-
-                alert(
-                    "Select a course before merging."
-                );
-
-                return;
-
-            }
-
-
-            for (const index of selected) {
-
-                if (
-                    schedule[index].course
-                    !==
-                    firstCourse
-                ) {
-
-                    alert(
-                        "Merged slots must have the same course."
-                    );
-
-                    return;
-
-                }
-
-            }
-
-
-            // Check teacher
-
-            const firstTeacher =
-                schedule[first].teacher;
-
-
-            for (const index of selected) {
-
-                if (
-                    schedule[index].teacher
-                    !==
-                    firstTeacher
-                ) {
-
-                    alert(
-                        "Merged slots must have the same teacher."
-                    );
-
-                    return;
-
-                }
-
-            }
-
-
-            // Mark all selected slots
-            // as one merged group
-
             selected.forEach(
                 index => {
 
-                    schedule[index].mergedWith =
+                    schedule[index]
+                        .mergedWith =
                         first;
 
                 }
             );
 
+
+            // Keep the first slot's
+            // current course/teacher.
+            //
+            // If it is empty, user can
+            // select the course afterward.
 
             renderSchedule();
 
@@ -613,26 +1028,28 @@ document
     );
 
 
-// ========================================
+// ============================================
 // UNMERGE
-// ========================================
+// ============================================
 
 document
-    .getElementById("unmergeButton")
+    .getElementById(
+        "unmergeButton"
+    )
     .addEventListener(
         "click",
         () => {
 
-            const checkboxes =
-                document.querySelectorAll(
+            const selected =
+                document.querySelector(
                     ".slot-checkbox:checked"
                 );
 
 
-            if (checkboxes.length === 0) {
+            if (!selected) {
 
                 alert(
-                    "Select a merged class first."
+                    "Select the merged period first."
                 );
 
                 return;
@@ -642,18 +1059,21 @@ document
 
             const index =
                 Number(
-                    checkboxes[0].dataset.index
+                    selected.dataset.index
                 );
 
 
             const group =
-                schedule[index].mergedWith;
+                schedule[index]
+                    .mergedWith;
 
 
-            if (group === null) {
+            if (
+                group === null
+            ) {
 
                 alert(
-                    "This slot is not merged."
+                    "This period is not merged."
                 );
 
                 return;
@@ -683,12 +1103,14 @@ document
     );
 
 
-// ========================================
+// ============================================
 // DATE NAVIGATION
-// ========================================
+// ============================================
 
 document
-    .getElementById("previousDay")
+    .getElementById(
+        "previousDay"
+    )
     .addEventListener(
         "click",
         () => {
@@ -697,14 +1119,21 @@ document
                 selectedDate.getDate() - 1
             );
 
+
+            loadRoutine();
+
             updateDateDisplay();
+
+            renderSchedule();
 
         }
     );
 
 
 document
-    .getElementById("nextDay")
+    .getElementById(
+        "nextDay"
+    )
     .addEventListener(
         "click",
         () => {
@@ -713,48 +1142,10 @@ document
                 selectedDate.getDate() + 1
             );
 
+
+            loadRoutine();
+
             updateDateDisplay();
-
-        }
-    );
-
-
-// ========================================
-// RESET
-// ========================================
-
-document
-    .getElementById("resetSchedule")
-    .addEventListener(
-        "click",
-        () => {
-
-            schedule =
-                timeSlots.map(
-                    () => ({
-
-                        course: "",
-                        teacher: "",
-                        mergedWith: null
-
-                    })
-                );
-
-
-            document.getElementById(
-                "classroom"
-            ).value = "";
-
-
-            document.getElementById(
-                "notice"
-            ).value = "";
-
-
-            document.getElementById(
-                "output"
-            ).textContent = "";
-
 
             renderSchedule();
 
@@ -762,12 +1153,36 @@ document
     );
 
 
-// ========================================
-// GENERATE OUTPUT
-// ========================================
+// ============================================
+// RESET
+// ============================================
 
 document
-    .getElementById("generateButton")
+    .getElementById(
+        "resetSchedule"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            loadRoutine();
+
+            updateDateDisplay();
+
+            renderSchedule();
+
+        }
+    );
+
+
+// ============================================
+// GENERATE OUTPUT
+// ============================================
+
+document
+    .getElementById(
+        "generateButton"
+    )
     .addEventListener(
         "click",
         () => {
@@ -779,7 +1194,9 @@ document
             message +=
                 "📅 "
                 +
-                formatDate(selectedDate)
+                formatDate(
+                    selectedDate
+                )
                 +
                 "\n\n";
 
@@ -787,9 +1204,7 @@ document
             schedule.forEach(
                 (item, index) => {
 
-                    // Skip slots that are
-                    // secondary members of
-                    // a merged group.
+                    // Skip secondary merged slots
 
                     if (
                         item.mergedWith !== null
@@ -802,8 +1217,10 @@ document
                     }
 
 
+                    // Skip empty classes
+
                     if (
-                        item.course === ""
+                        !item.course
                     ) {
 
                         return;
@@ -812,10 +1229,17 @@ document
 
 
                     const course =
-                        courses[item.course];
+                        findCourse(
+                            item.course
+                        );
 
 
-                    // Determine end time
+                    if (!course) {
+
+                        return;
+
+                    }
+
 
                     let lastIndex =
                         index;
@@ -826,13 +1250,17 @@ document
                     ) {
 
                         while (
+
                             lastIndex + 1
                             <
                             schedule.length
+
                             &&
+
                             schedule[
                                 lastIndex + 1
                             ].mergedWith === index
+
                         ) {
 
                             lastIndex++;
@@ -843,15 +1271,25 @@ document
 
 
                     const start =
-                        timeSlots[index].start;
+                        timeSlots[
+                            index
+                        ].start;
 
 
                     const end =
-                        timeSlots[lastIndex].end;
+                        timeSlots[
+                            lastIndex
+                        ].end;
+
+
+                    const emoji =
+                        timeSlots[
+                            index
+                        ].emoji;
 
 
                     let line =
-                        `${start} – ${end} : `;
+                        `${emoji} ${start} – ${end} : `;
 
 
                     line +=
@@ -869,7 +1307,9 @@ document
 
 
                     message +=
-                        line + "\n\n";
+                        line
+                        +
+                        "\n\n";
 
                 }
             );
@@ -881,7 +1321,9 @@ document
                 ).value;
 
 
-            if (classroom) {
+            if (
+                classroom
+            ) {
 
                 message +=
                     `📍 Classroom : ${classroom}\n\n`;
@@ -895,7 +1337,9 @@ document
                 ).value.trim();
 
 
-            if (notice) {
+            if (
+                notice
+            ) {
 
                 message +=
                     `📢 Notice : ${notice}\n\n`;
@@ -916,12 +1360,14 @@ document
     );
 
 
-// ========================================
+// ============================================
 // COPY
-// ========================================
+// ============================================
 
 document
-    .getElementById("copyButton")
+    .getElementById(
+        "copyButton"
+    )
     .addEventListener(
         "click",
         async () => {
@@ -972,9 +1418,11 @@ document
     );
 
 
-// ========================================
+// ============================================
 // INITIALIZE
-// ========================================
+// ============================================
+
+loadRoutine();
 
 updateDateDisplay();
 
