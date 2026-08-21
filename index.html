@@ -2,78 +2,193 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Class Routine Generator</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NSTU Class Routine Generator</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
+
 <div class="app">
 
-    <!-- HEADER -->
-    <header class="header">
-        <h1>Class Routine Generator</h1>
-        <p>Prepare tomorrow's class schedule</p>
+
+    <!-- =====================================
+         UNIVERSITY HEADER
+    ====================================== -->
+
+    <header class="university-header">
+
+        <img
+            src="nstu-logo.png"
+            alt="NSTU Logo"
+            class="university-logo"
+        >
+
+        <div class="university-info">
+
+            <h1>
+                Noakhali Science and Technology University
+            </h1>
+
+            <h2>
+                Department of Environmental Science
+                and Disaster Management
+            </h2>
+
+            <p>
+                Class Routine Generator
+            </p>
+
+        </div>
+
     </header>
 
 
-    <!-- DATE -->
-    <section class="date-section">
 
-        <button id="previousDay">‹</button>
+    <!-- =====================================
+         DATE NAVIGATION
+    ====================================== -->
 
-        <div>
-            <span class="label">Preparing Schedule For</span>
-            <h2 id="scheduleDate">Loading...</h2>
+    <section class="date-card">
+
+        <button
+            id="previousDay"
+            class="date-button"
+        >
+            ‹
+        </button>
+
+
+        <div class="date-info">
+
+            <span>
+                Preparing Schedule For
+            </span>
+
+            <h2 id="scheduleDate">
+                Loading...
+            </h2>
+
+            <small id="routineStatus">
+                Regular Routine
+            </small>
+
         </div>
 
-        <button id="nextDay">›</button>
+
+        <button
+            id="nextDay"
+            class="date-button"
+        >
+            ›
+        </button>
 
     </section>
 
 
-    <!-- SCHEDULE -->
+
+    <!-- =====================================
+         SCHEDULE
+    ====================================== -->
+
     <main>
 
-        <div class="section-title">
 
-            <h2>Class Schedule</h2>
+        <div class="section-heading">
 
-            <button id="resetSchedule">
+            <div>
+
+                <h2>
+                    Class Schedule
+                </h2>
+
+                <p>
+                    Edit the suggested routine if needed.
+                </p>
+
+            </div>
+
+
+            <button
+                id="resetSchedule"
+                class="reset-button"
+            >
                 Reset
             </button>
 
         </div>
 
 
-        <!-- SLOTS -->
+
+        <!-- SCHEDULE CONTAINER -->
+
         <div id="scheduleContainer"></div>
 
 
-        <!-- MERGE CONTROLS -->
-        <div class="merge-controls">
 
-            <button id="mergeButton">
-                Merge Selected Slots
-            </button>
+        <!-- =====================================
+             MERGE CONTROLS
+        ====================================== -->
 
-            <button id="unmergeButton">
-                Unmerge
-            </button>
+        <div class="merge-panel">
+
+            <div>
+
+                <strong>
+                    Merge Periods
+                </strong>
+
+                <p>
+                    Select consecutive periods first,
+                    then merge them.
+                </p>
+
+            </div>
+
+
+            <div class="merge-buttons">
+
+                <button
+                    id="mergeButton"
+                    class="primary-button"
+                >
+                    Merge Selected
+                </button>
+
+                <button
+                    id="unmergeButton"
+                    class="secondary-button"
+                >
+                    Unmerge
+                </button>
+
+            </div>
 
         </div>
 
 
-        <!-- CLASSROOM -->
-        <section class="settings-section">
+
+        <!-- =====================================
+             CLASSROOM
+        ====================================== -->
+
+        <section class="settings-card">
 
             <label for="classroom">
                 Classroom
             </label>
+
 
             <select id="classroom">
 
@@ -81,21 +196,40 @@
                     — Select Classroom —
                 </option>
 
-                <option value="C-1">C-1</option>
-                <option value="C-2">C-2</option>
-                <option value="C-3">C-3</option>
+                <option value="C-1">
+                    C-1
+                </option>
+
+                <option value="C-2">
+                    C-2
+                </option>
+
+                <option value="C-3">
+                    C-3
+                </option>
 
             </select>
 
         </section>
 
 
-        <!-- NOTICE -->
-        <section class="settings-section">
+
+        <!-- =====================================
+             NOTICE
+        ====================================== -->
+
+        <section class="settings-card">
 
             <label for="notice">
-                Notice <span>(Optional)</span>
+
+                Notice
+
+                <span>
+                    Optional
+                </span>
+
             </label>
+
 
             <textarea
                 id="notice"
@@ -106,36 +240,60 @@
         </section>
 
 
-        <!-- GENERATE -->
+
+        <!-- =====================================
+             GENERATE
+        ====================================== -->
+
         <button
             id="generateButton"
             class="generate-button"
         >
-            Generate Schedule
+            Generate Class Schedule
         </button>
 
 
-        <!-- OUTPUT -->
+
+        <!-- =====================================
+             OUTPUT
+        ====================================== -->
+
         <section
             id="outputSection"
-            class="output-section"
+            class="output-card"
         >
 
-            <div class="output-header">
+            <div class="output-heading">
 
-                <h2>Generated Schedule</h2>
+                <h2>
+                    Generated Schedule
+                </h2>
 
-                <button id="copyButton">
+
+                <button
+                    id="copyButton"
+                    class="copy-button"
+                >
                     Copy
                 </button>
 
             </div>
 
+
             <pre id="output"></pre>
 
         </section>
 
+
     </main>
+
+
+    <footer>
+
+        NSTU • ESDM • Class Routine Generator
+
+    </footer>
+
 
 </div>
 
@@ -143,4 +301,5 @@
 <script src="script.js"></script>
 
 </body>
+
 </html>
