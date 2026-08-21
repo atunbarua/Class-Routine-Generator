@@ -11,12 +11,13 @@ body {
 }
 
 .app {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 850px;
+    margin: auto;
     padding: 20px;
 }
 
-/* Header */
+
+/* HEADER */
 
 .header {
     text-align: center;
@@ -33,26 +34,36 @@ body {
 }
 
 
-/* Date */
+/* DATE */
 
 .date-section {
     background: white;
     border-radius: 12px;
     padding: 18px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     margin-bottom: 25px;
 }
 
 .date-section button {
     border: none;
     background: #eef2f7;
-    width: 40px;
-    height: 40px;
+
+    width: 42px;
+    height: 42px;
+
     border-radius: 8px;
+
     font-size: 25px;
+
     cursor: pointer;
+}
+
+.date-section button:hover {
+    background: #e2e8f0;
 }
 
 .date-section div {
@@ -62,7 +73,9 @@ body {
 .label {
     font-size: 12px;
     color: #6b7280;
+
     display: block;
+
     margin-bottom: 4px;
 }
 
@@ -71,12 +84,13 @@ body {
 }
 
 
-/* Section title */
+/* SECTION TITLE */
 
 .section-title {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+
     margin-bottom: 12px;
 }
 
@@ -87,83 +101,192 @@ body {
 #resetSchedule {
     border: none;
     background: transparent;
+
     color: #dc2626;
+
     cursor: pointer;
 }
 
 
-/* Schedule */
+/* SCHEDULE SLOT */
 
 .schedule-slot {
     background: white;
+
     border-radius: 10px;
+
     padding: 15px;
+
     margin-bottom: 10px;
+
+    border: 2px solid transparent;
+
+    transition: 0.15s;
+}
+
+.schedule-slot.selected {
+    border-color: #111827;
+}
+
+.slot-top {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 12px;
 }
 
 .time {
     font-weight: bold;
-    margin-bottom: 10px;
-    display: block;
 }
 
-.schedule-slot select {
+.select-slot {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    font-size: 13px;
+
+    color: #6b7280;
+}
+
+.course-select,
+.teacher-select,
+#classroom {
     width: 100%;
+
     padding: 10px;
+
     border: 1px solid #d1d5db;
+
     border-radius: 7px;
+
     background: white;
+
+    font-family: inherit;
+
+    font-size: 14px;
+}
+
+.teacher-select {
+    margin-top: 8px;
 }
 
 
-/* Settings */
+/* MERGE */
+
+.merge-controls {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 15px;
+
+    margin-bottom: 20px;
+}
+
+.merge-controls button {
+    flex: 1;
+
+    padding: 11px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+#mergeButton {
+    background: #111827;
+    color: white;
+}
+
+#mergeButton:hover {
+    background: #374151;
+}
+
+#unmergeButton {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+#unmergeButton:hover {
+    background: #d1d5db;
+}
+
+
+/* SETTINGS */
 
 .settings-section {
     background: white;
+
     padding: 15px;
+
     border-radius: 10px;
+
     margin-top: 15px;
 }
 
 .settings-section label {
     display: block;
+
     font-weight: bold;
+
     margin-bottom: 8px;
 }
 
 .settings-section label span {
     font-weight: normal;
+
     color: #6b7280;
+
     font-size: 13px;
 }
 
-input,
 textarea {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #d1d5db;
-    border-radius: 7px;
-    font-family: inherit;
-    font-size: 14px;
-}
 
-textarea {
+    padding: 10px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 7px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
     resize: vertical;
 }
 
 
-/* Generate */
+/* GENERATE */
 
 .generate-button {
     width: 100%;
+
     margin-top: 20px;
+
     padding: 14px;
+
     border: none;
+
     border-radius: 9px;
+
     background: #111827;
+
     color: white;
+
     font-size: 16px;
+
     font-weight: bold;
+
     cursor: pointer;
 }
 
@@ -172,33 +295,65 @@ textarea {
 }
 
 
-/* Output */
+/* OUTPUT */
 
 .output-section {
     background: white;
+
     margin-top: 25px;
+
     padding: 15px;
+
     border-radius: 10px;
 }
 
 .output-header {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     margin-bottom: 12px;
 }
 
 .output-header button {
     border: none;
+
     background: #eef2f7;
+
     padding: 8px 15px;
+
     border-radius: 7px;
+
     cursor: pointer;
 }
 
 #output {
     white-space: pre-wrap;
+
     font-family: Arial, sans-serif;
+
     font-size: 14px;
+
     line-height: 1.6;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .app {
+        padding: 12px;
+    }
+
+    .header h1 {
+        font-size: 23px;
+    }
+
+    .merge-controls {
+        flex-direction: column;
+    }
+
 }
